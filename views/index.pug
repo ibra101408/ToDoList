@@ -1,5 +1,23 @@
-html
+doctype html
+html(lang="en")
     head
-        title To-Do List
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title To-Do List App
+        link(rel="stylesheet", href="stylesheets/style.css")
+
     body
-        h1 To-Do List
+        h1 To-Do List App
+
+            tbody
+                each todo in todos
+                    tr
+                        td= todo.id
+                        td= todo.title
+                        td= todo.description
+                        td
+                            form(action=`/todos/${todo.id}?_method=DELETE`, method="POST")
+                                input(type="hidden", name="_method", value="DELETE")
+                                button.but( type="submit") Delete
+
