@@ -15,6 +15,17 @@ module.exports = {
                 }
             });
         });
+    },
+    create: (title, description) => {
+        return new Promise((resolve, reject) => {
+            db.run('INSERT INTO todos (title, description) VALUES (?, ?)', [title, description], function (err) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(this.lastID);
+                }
+            });
+        });
     }/*
     delete: (id) => {
         return new Promise((resolve, reject) => {

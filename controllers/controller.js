@@ -16,6 +16,18 @@ router.get('/', async (req, res) => {
 
 });
 
+// POST a new todo item
+router.post('/', async (req, res) => {
+    const { title, description } = req.body;
+    try {
+        await model.create(title, description);
+        res.redirect('/todos');
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
 
 //delete todo
 /*
